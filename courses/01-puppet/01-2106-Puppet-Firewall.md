@@ -1,14 +1,14 @@
 # Puppet Firewall
 
 ###Slide 1
-Firewall rule management is a critical task that can be accomplished with Puppet Enterprise.
+Firewall rule management is a critical task that can automate with Puppet Enterprise.
 
 
 ###Slide 2
-In this course, you will see an overview of how to:
+In this course, we look at how to:
 
 *write a simple firewall module.
-*use the PE console to add a class called "my firewall" to your agent nodes.
+*use the Puppet Enterprise console to add a class named "my firewall" to your agent nodes.
 *write a class to open ports for the Puppet master.
 *enforce the desired state of the "my firewall" class.
 
@@ -16,12 +16,12 @@ In this course, you will see an overview of how to:
 ###Slide 3
 Before we get deep into the ""my firewall" module", let's take care of some housekeeping.
 
-If you haven’t already done so, you’ll need to install Puppet Enterprise and NTP. See the system requirements for supported platforms.
+If you haven’t already done so, you need to install Puppet Enterprise and NTP. See the system requirements for supported platforms.
 
 Puppet NTP insures that your nodes are synchronous. You can find a link to the NTP Quick Start Guide in the resources section of this lesson.
 
 ###Slide 4
-System administrators define a set of firewall policies that usually manage functions such as application ports, node interfaces, IP addresses and an accept/deny statement. These rules are applied in a “top-to-bottom” approach. For example, if a node that has access to a port, and part of t group that does not have access to that port, the node will inherit the group restriction. 
+System administrators define a set of firewall policies that usually manage functions such as application ports, node interfaces, IP addresses and an accept/deny statement. These rules are applied in a “top-to-bottom” approach. For example, if a node that has access to a port, and the node belongs to a group that does not have access to that port, the node will inherit the group restriction. 
 
 Here's another example: Let's say that a service such as SSH attempts to access resources on the other side of a firewall. The firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
 
@@ -29,7 +29,7 @@ Here's another example: Let's say that a service such as SSH attempts to access 
 ###Slide 5
 The first thing to know is that, by default, the modules you use to manage nodes are located in /etc/puppetlabs/puppet/modules— this includes modules installed by Puppet Enterprise, those that you download from the Forge, and those you write yourself.
 
-Puppet Enterprise also installs modules in /opt/puppet/share/puppet/modules. It's important that you don't modify anything in this directory or add modules of your own to it.
+Puppet Enterprise also installs modules in /opt/puppet/share/puppet/modules. It's important that you remember that you don't modify anything in this directory or add modules of your own to it.
 
 There are plenty of resources about modules and the creation of modules that you can reference. Check out Modules and Manifests, the Beginner’s Guide to Modules, and the Puppet Forge.
 
@@ -41,7 +41,7 @@ Modules are directory trees. The example module used in this course is called "m
 ###Slide 7
 The pre.pp manifest looks like this:
 
-The key resources in this module are:
+The key resources in this manifest are:
 proto
 iniface
 action
@@ -51,12 +51,12 @@ and port
 
 ###Slide 8
 The post.pp manifest looks like this:
-
+	
 
 ###Slide 9
 The init.pp manifest looks like this:
 
-You can see that it contains the pre and post manifests.
+You can see that it contains the pre and post class declarations.
 
 
 ###Slide 10
@@ -70,17 +70,17 @@ The init.pp that you create for the "my master" module looks like this:
 
 
 ###Slide 12
-Best practice is to create a new group for each set of firewall rules, then to each group add the nodes that should be goverened by the firewall rules. Finally, add your firewall rule class to the group that you created.
+Best practice is to create a new group for each set of firewall rules, and then to add nodes to each group. Finally, add your firewall rule class to the group that you created.
 
-Now imagine a scenario where a member of your team changes the contents of the iptables to allow connections on a random port that was not specified in "my firewall".
+Now imagine a scenario where a member changes a local iptable to open a port that is blocked by group policy.
 
-However, "my firewall" is already defined and applied to a group. All that's required is to let the scheduled Puppet run to begin. Otherwise, go to the Management tab in Peppet Enterprise console,, run once, and you’re finished. 
+Since "my firewall" is already defined and applied to a group, all that's required is to let the scheduled Puppet run begin. Otherwise, go to the Management tab in Puppet Enterprise console, run once, and you’re finished. 
 
 
 ###Slide 13
-In this course, we have shown you the key concepts to install and maintain the Firewall module
+In this course, you have seen key concepts to install and maintain the Firewall module
 
-We hope that this brief introduction to Firewalls has shown you how easy it is to implement and verify DNS using Puppet.
+We hope that this brief introduction to Firewalls demonstrates how easy it is to implement and verify DNS using Puppet.
 
 
 ###Slide 14
