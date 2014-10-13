@@ -21,17 +21,15 @@ If you haven’t already done so, you need to install Puppet Enterprise and NTP.
 Puppet NTP insures that your nodes are synchronous. You can find a link to the NTP Quick Start Guide in the resources section of this lesson.
 
 ###Slide 4
-System administrators define a set of firewall policies that usually manage functions such as application ports, node interfaces, IP addresses and an accept/deny statement. These rules are applied in a “top-to-bottom” approach. For example, if a node has access to a port, and the node belongs to a group that does not have access to that port, the node will inherit the group restriction. 
-
-Here's another example: Let's say that a service such as SSH attempts to access resources on the other side of a firewall. The firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
-
-
-###Slide 5
-The first thing to know is that, by default, the modules you use to manage nodes are located in /etc/puppetlabs/puppet/modules— this includes modules installed by Puppet Enterprise, those that you download from the Forge, and those you write yourself.
+It's also important to know is that, by default, the modules you use to manage nodes are located in /etc/puppetlabs/puppet/modules— this includes modules installed by Puppet Enterprise, those that you download from the Forge, and those you write yourself.
 
 Puppet Enterprise also installs modules in /opt/puppet/share/puppet/modules. It's important that you remember that you don't modify anything in this directory or add modules of your own to it.
 
 There are plenty of resources about modules and the creation of modules that you can reference. Check out Modules and Manifests, the Beginner’s Guide to Modules, and the Puppet Forge.
+
+
+###Slide 5
+System administrators define a set of firewall policies that usually manage functions such as application ports, node interfaces, IP addresses and an accept/deny statement. These rules are applied in a “top-to-bottom” approach. For example, if a node has access to a port, and the node belongs to a group that does not have access to that port, the node will inherit the group restriction. 
 
 
 ###Slide 6
@@ -73,7 +71,7 @@ Best practice is to create a new group for each set of firewall rules, and then 
 
 Now imagine a scenario where a member changes a local iptable to open a port that is blocked by group policy.
 
-Since "my firewall" is already defined and applied to a group, all that's required is to let the scheduled Puppet run begin. Otherwise, if you want to apply the change immegiately, go to the Management tab in Puppet Enterprise console, run once, and you’re finished. 
+Since "my firewall" is already defined and applied to a group, all that's required is to let the scheduled Puppet run begin. Otherwise, if you want to apply the change immediately, go to the Management tab in Puppet Enterprise console, click run once, and you’re finished. 
 
 
 ###Slide 13
